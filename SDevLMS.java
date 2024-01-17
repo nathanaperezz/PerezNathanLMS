@@ -52,7 +52,6 @@ public class SDevLMS
                 System.out.println(choice + " is not an valid option. Please try again.");
             }
 
-
         } //end while loop for running program
 
     } //end main
