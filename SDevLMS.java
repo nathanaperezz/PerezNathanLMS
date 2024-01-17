@@ -6,6 +6,29 @@ import java.util.Scanner; //import scanner class
 
 public class SDevLMS
 {
+    void AddBook(int id, String title, String author)
+    {
+
+    }
+    void GetUserBooks()
+    {
+
+    }
+
+    void GetUserBook()
+    {
+
+    }
+
+    void RemoveBook()
+    {
+
+    }
+
+
+
+    void
+
     public static void main(String[] args)
     {
         Scanner scan = new Scanner(System.in);
