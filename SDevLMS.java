@@ -6,10 +6,11 @@ import java.util.Scanner; //import scanner class
 
 public class SDevLMS
 {
+    static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args)
     {
-        Scanner scan = new Scanner(System.in);
+
 
         //create Library (array of books)
         Book[] library = new Book[100];
@@ -38,8 +39,8 @@ public class SDevLMS
             }
             else if(choice == 2) //add
             {
-                //add book function
-                System.out.println("this is a test");
+                //GetUserBook method (which calls AddBook method
+                GetUserBook(library);
             }
             else if(choice == 3) //remove
             {
@@ -60,21 +61,43 @@ public class SDevLMS
 
     } //end main
 
-    private static void AddBook(int id, String title, String author)
+    private static void AddBook(int id, String title, String author, Book[] library)
     {
 
     }
-    private static void GetUserBooks()
-    {
-
-    }
-
-    private static void GetUserBook()
+    private static void GetFileBooks(Book[] library)
     {
 
     }
 
-    private static void RemoveBook()
+    private static void GetUserBook(Book[] library)
+    {
+        //declare variables
+        int id = -1;
+        String title;
+        String author;
+        String removeNewLine;
+
+        //Prompt user to enter id, title, and author.
+        System.out.println("Adding a book...");
+        System.out.println("Please enter the ID, Title, and Author");
+
+        System.out.print("ID: ");
+        id = scan.nextInt();
+        removeNewLine = scan.nextLine(); //removes new line character so that title does not scan it.
+
+        System.out.print("Title: ");
+        title = scan.nextLine();
+
+        System.out.print("Author: ");
+        author = scan.nextLine();
+
+        System.out.println(id + "," + title + "," + author + " has been saved to your library.");
+
+        //AddBook(id, title, author, library);
+    }
+
+    private static void RemoveBook(Book[] library)
     {
 
     }
