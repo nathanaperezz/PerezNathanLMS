@@ -2,14 +2,15 @@
 //Library Management Software for Software Development 1 Module 2
 //Create a basic LMS using SDLC created in Part I
 
+import java.io.*;
 import java.util.Scanner; //import scanner class
+import java.io.FileReader;
 
 public class SDevLMS
 {
     static Scanner scan = new Scanner(System.in);
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
 
 
         //create Library (array of books)
@@ -39,7 +40,7 @@ public class SDevLMS
             else if(choice == 1) //file add
             {
                 //file add function
-                System.out.println("this is a test");
+                ReadFile(library);
             }
             else if(choice == 2) //add
             {
@@ -65,6 +66,10 @@ public class SDevLMS
 
     } //end main
 
+
+    //----------------------- METHODS -------------------------------------------------------------------
+
+
     //checks to see if there are any books in the library array, if yes return true
     private static boolean HasBooks(Book[] library)
     {
@@ -78,14 +83,17 @@ public class SDevLMS
         return false;
     }
 
+
     //Adds the book to the first opening in the library
     private static void AddBook(int id, String title, String author, Book[] library)
     {
-        int openSpace = -1;
+        int openSpace = -2;
+
+        Book.numBooks++;
 
         //for loop that goes through library until it gets to an opening
         //checks for opening at the beginning first
-        for(int i = 0; i < (Book.numBooks +1); i++)
+        for(int i = 0; i < (Book.numBooks); i++)
         {
             if(library[i].id == -1)
             {
@@ -103,10 +111,43 @@ public class SDevLMS
         library[openSpace].Print();
         System.out.println(" has been added to your library.");
     }
-    private static void GetFileBooks(Book[] library)
-    {
 
+    //Seperates line by commas and stores in id, title and author with their respective data types.
+    //Sends this data to the AddBook method
+    private static void GetBookFromLine(String line, Book[] library)
+    {
+        //declare variables that will hold the id, title, and author
+        int id;
+        String title;
+        String author;
+
+        //split line into 3 strings (stored in array stringBook) using commas.
+        String[] stringBook = line.split(",", 3);
+
+        //set values of id, title, and author to values found in line
+        id = Integer.parseInt(stringBook[0]); //change id from string to int
+        title = stringBook[1];
+        author = stringBook[2];
+
+        //add book to the library
+        AddBook(id, title, author, library);
     }
+
+
+    //Opens file and sends stores each line in a string called line.
+    //This is then sent to the GetBookFromLine method
+    private static void ReadFile(Book[] library) throws IOException {
+
+        //open file
+        BufferedReader reader = new BufferedReader(new FileReader("libraryBooks.txt"));
+
+        String line;
+        while((line = reader.readLine()) != null)
+        {
+            GetBookFromLine(line, library);
+        }
+    }
+
 
     //get id, title, and author from user and run AddBook method
     private static void GetUserBook(Book[] library)
@@ -137,6 +178,7 @@ public class SDevLMS
         //add book using the AddBook method
         AddBook(id, title, author, library);
     }
+
 
     //removes a book from the library
     private static void RemoveBook(Book[] library)
@@ -179,12 +221,13 @@ public class SDevLMS
                     //don't remove book
                     System.out.println("Okay, we'll leave it for now. ");
                 } else System.out.println(yn + " is not a valid option. Please try again.");
-            } while (yn != 1 || yn != 2);
+            } while (yn != 1 && yn != 2);
 
         }
         //there are no books in library
         else System.out.println("You currently do not have any books. ");
     }
+
 
     //prints all books in the library
     private static void PrintBooks(Book[] library)
