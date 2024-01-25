@@ -39,8 +39,13 @@ public class SDevLMS
                 break;
             else if(choice == 1) //file add
             {
-                //file add function
-                ReadFile(library);
+                try {
+                    //file add function
+                    ReadFile(library);
+                } catch (Exception e) {
+                    System.out.println("Error adding book(s) from text file.");
+                    System.out.println("Please check that books in file are seperated by commas and ID is an non-negative integer");
+                }
             }
             else if(choice == 2) //add
             {
@@ -69,6 +74,16 @@ public class SDevLMS
 
     //----------------------- METHODS -------------------------------------------------------------------
 
+    //checks availability of ID. Returns true if ID is available, and false if ID has already been used
+    private static boolean IdAvailability(int id, Book[] library)
+    {
+        for(int i = 0; i < library.length; i++)
+        {
+            if(library[i].id == id)
+                return false;
+        }
+        return true;
+    }
 
     //checks to see if there are any books in the library array, if yes return true
     private static boolean HasBooks(Book[] library)
@@ -162,10 +177,20 @@ public class SDevLMS
         System.out.println("Adding a book...");
         System.out.println("Please enter the ID, Title, and Author");
 
-        //get id from user
-        System.out.print("ID: ");
-        id = scan.nextInt();
-        removeNewLine = scan.nextLine(); //removes new line character so that title does not scan it.
+        //make sure that ID is available and allow user to try a different ID if it is not.
+        boolean available = false;
+
+        while(!available) {
+            //get id from user
+            System.out.print("ID: ");
+            id = scan.nextInt();
+            removeNewLine = scan.nextLine(); //removes new line character so that title does not scan it.
+
+            available = IdAvailability(id, library);
+
+            if(!available)
+                System.out.println("Sorry that ID has already been used. Please try again with a different ID.");
+        }
 
         //get title from user
         System.out.print("Title: ");
@@ -226,6 +251,9 @@ public class SDevLMS
         }
         //there are no books in library
         else System.out.println("You currently do not have any books. ");
+
+        //remove 1 from the book count
+        Book.numBooks--;
     }
 
 
