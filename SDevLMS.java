@@ -32,7 +32,18 @@ public class SDevLMS
             System.out.println("4 - Print library");
             System.out.println("-1 - Quit");
 
-            int choice = scan.nextInt();
+            //create integer that stores users option choice
+            int choice = 0;
+
+            //catch any non-valid data types
+            try
+            {
+                choice = scan.nextInt();
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error please enter only numbers");
+            }
 
             //get user choice
             if(choice == -1) //quit
@@ -77,9 +88,8 @@ public class SDevLMS
     //checks availability of ID. Returns true if ID is available, and false if ID has already been used
     private static boolean IdAvailability(int id, Book[] library)
     {
-        for(int i = 0; i < library.length; i++)
-        {
-            if(library[i].id == id)
+        for (Book book : library) {
+            if (book.id == id)
                 return false;
         }
         return true;
@@ -88,10 +98,9 @@ public class SDevLMS
     //checks to see if there are any books in the library array, if yes return true
     private static boolean HasBooks(Book[] library)
     {
-        for(int i = 0; i < library.length; i++)
-        {
+        for (Book book : library) {
             //if there are any books return true
-            if(library[i].id != -1)
+            if (book.id != -1)
                 return true;
         }
         //if it gets to this point there are no books in the array
@@ -102,32 +111,36 @@ public class SDevLMS
     //Adds the book to the first opening in the library
     private static void AddBook(int id, String title, String author, Book[] library)
     {
-        int openSpace = -2;
-
-        Book.numBooks++;
-
-        //for loop that goes through library until it gets to an opening
-        //checks for opening at the beginning first
-        for(int i = 0; i < (Book.numBooks); i++)
+        //if ID is available
+        if(IdAvailability(id, library))
         {
-            if(library[i].id == -1)
-            {
-                openSpace = i;
-                break;
+            int openSpace = -2;
+
+            Book.numBooks++;
+
+            //for loop that goes through library until it gets to an opening
+            //checks for opening at the beginning first
+            for (int i = 0; i < (Book.numBooks); i++) {
+                if (library[i].id == -1) {
+                    openSpace = i;
+                    break;
+                }
             }
+
+            //add book to opening in array
+            library[openSpace].id = id;
+            library[openSpace].title = title;
+            library[openSpace].author = author;
+
+            //print book for the user to let them know it has been added
+            library[openSpace].Print();
+            System.out.println(" has been added to your library.");
         }
-
-        //add book to opening in array
-        library[openSpace].id = id;
-        library[openSpace].title = title;
-        library[openSpace].author = author;
-
-        //print book for the user to let them know it has been added
-        library[openSpace].Print();
-        System.out.println(" has been added to your library.");
+        //if ID is not available (has already been used for another book).
+        else System.out.println("Error, that ID has already been used.");
     }
 
-    //Seperates line by commas and stores in id, title and author with their respective data types.
+    //Separates line by commas and stores in id, title and author with their respective data types.
     //Sends this data to the AddBook method
     private static void GetBookFromLine(String line, Book[] library)
     {
@@ -171,7 +184,7 @@ public class SDevLMS
         int id = -1;
         String title;
         String author;
-        String removeNewLine;
+        //String removeNewLine;
 
         //Prompt user to enter id, title, and author.
         System.out.println("Adding a book...");
@@ -184,7 +197,7 @@ public class SDevLMS
             //get id from user
             System.out.print("ID: ");
             id = scan.nextInt();
-            removeNewLine = scan.nextLine(); //removes new line character so that title does not scan it.
+            scan.nextLine(); //removes new line character so that title does not scan it.
 
             available = IdAvailability(id, library);
 
@@ -209,21 +222,31 @@ public class SDevLMS
     private static void RemoveBook(Book[] library)
     {
         //check to see if there are any books in library
-        if(HasBooks(library) == true) //remove a book
+        //if library has any books in it
+        if(HasBooks(library)) //remove a book
         {
-            int id = -1;
+            int id;
             int location = -1;
 
-            //ask user for ID of book to remove
-            System.out.println("Please enter the ID of the book you would like to remove: ");
-            id = scan.nextInt();
+            do
+            {            //ask user for ID of book to remove
+                System.out.println("Please enter the ID of the book you would like to remove: ");
+                id = scan.nextInt();
 
-            //find the location of the book in the library
-            for(int i = 0; i < library.length; i++)
-            {
-                if(id == library[i].id)
-                    location = i;
-            }
+                //make sure that the id exists
+
+                //find the location of the book in the library
+                for (int i = 0; i < library.length; i++) {
+                    if (id == library[i].id)
+                        location = i;
+                }
+
+                //if location is still -1 book with that id must not exist
+                if(location == -1)
+                    System.out.println("Error, no book matches the ID you entered.");
+
+            } while (location == -1);
+
 
             //check whether user would like to remove the given book.
             int yn; //stores 1 for yes and 2 for no
@@ -261,15 +284,14 @@ public class SDevLMS
     private static void PrintBooks(Book[] library)
     {
         //check to see if there are any books in library
-        if(HasBooks(library) == true)
+        //check to make sure library has books in it
+        if(HasBooks(library))
         {
             System.out.println("Books: ");
             //for each book in the library
-            for (int i = 0; i < library.length; i++)
-            {
-                if(library[i].id != -1)
-                {
-                    library[i].Print();
+            for (Book book : library) {
+                if (book.id != -1) {
+                    book.Print();
                     System.out.print("\n");
                 }
             }
