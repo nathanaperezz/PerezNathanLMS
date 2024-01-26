@@ -1,26 +1,32 @@
 //Nathan Perez
 //Library Management Software for Software Development 1 Module 2
 //Create a basic LMS using SDLC created in Part I
+//Last edited 25 Jan 2024
 
 import java.io.*;
 import java.util.Scanner; //import scanner class
-import java.io.FileReader;
+import java.io.FileReader; //import file reader class
 
 public class SDevLMS
 {
+    //scanner to be used in several methods
     static Scanner scan = new Scanner(System.in);
+
+    //----------------------- MAIN -------------------------------------------------------------------
 
     public static void main(String[] args) throws IOException {
 
-
         //create Library (array of books)
-        Book[] library = new Book[100];
+        Book[] library = new Book[1000]; //can hold 1000 books, can be changed later if necessary
+
+        //initialize array
         for(int i = 0; i < library.length; i++)
         {
             library[i] = new Book();
         }
 
         System.out.println("Welcome to the Library Management Software!");
+
         //while loop for select and performing functions
         while(true)
         {
@@ -78,14 +84,15 @@ public class SDevLMS
                 System.out.println(choice + " is not an valid option. Please try again.");
             }
 
-        } //end while loop for running program
-
+        } //end while loop for running user options
     } //end main
 
 
     //----------------------- METHODS -------------------------------------------------------------------
 
-    //checks availability of ID. Returns true if ID is available, and false if ID has already been used
+    //checks availability of ID in library
+    //takes in the ID and library
+    //Returns true if ID is available, and false if ID has already been used
     private static boolean IdAvailability(int id, Book[] library)
     {
         for (Book book : library) {
@@ -95,7 +102,9 @@ public class SDevLMS
         return true;
     }
 
-    //checks to see if there are any books in the library array, if yes return true
+    //checks to see if there are any books in the library array
+    //Takes in the library
+    //If there are books, return true, else return false
     private static boolean HasBooks(Book[] library)
     {
         for (Book book : library) {
@@ -109,6 +118,7 @@ public class SDevLMS
 
 
     //Adds the book to the first opening in the library
+    //Takes in the ID, Title, and Author of book that is being created. Also takes in library
     private static void AddBook(int id, String title, String author, Book[] library)
     {
         //if ID is available
@@ -142,6 +152,7 @@ public class SDevLMS
 
     //Separates line by commas and stores in id, title and author with their respective data types.
     //Sends this data to the AddBook method
+    //Takes in a string (a line from the file), and library
     private static void GetBookFromLine(String line, Book[] library)
     {
         //declare variables that will hold the id, title, and author
@@ -164,6 +175,7 @@ public class SDevLMS
 
     //Opens file and sends stores each line in a string called line.
     //This is then sent to the GetBookFromLine method
+    //Takes in library, does not return anything.
     private static void ReadFile(Book[] library) throws IOException {
 
         //open file
@@ -178,6 +190,7 @@ public class SDevLMS
 
 
     //get id, title, and author from user and run AddBook method
+    //takes in library, returns nothing
     private static void GetUserBook(Book[] library)
     {
         //declare variables
@@ -219,6 +232,7 @@ public class SDevLMS
 
 
     //removes a book from the library
+    //takes in library, returns nothing
     private static void RemoveBook(Book[] library)
     {
         //check to see if there are any books in library
@@ -281,6 +295,7 @@ public class SDevLMS
 
 
     //prints all books in the library
+    //takes in library, returns nothing
     private static void PrintBooks(Book[] library)
     {
         //check to see if there are any books in library

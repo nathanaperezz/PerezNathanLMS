@@ -1,3 +1,8 @@
+//Nathan Perez
+//Library Management Software for Software Development 1 Module 2
+//Last edited 25 Jan 2024
+
+//Book Class
 
 public class Book {
     static int numBooks = 0;
