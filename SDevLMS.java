@@ -261,7 +261,6 @@ public class SDevLMS
 
             } while (location == -1);
 
-
             //check whether user would like to remove the given book.
             int yn; //stores 1 for yes and 2 for no
             do {
