@@ -65,7 +65,7 @@ public class SDevLMS
                     ReadFile(library);
                 } catch (Exception e) {
                     System.out.println("Error adding book(s) from text file.");
-                    System.out.println("Please check that books in file are seperated by commas and ID is an non-negative integer");
+                    System.out.println("Please check that books in file are seperated by commas and barcode is an non-negative integer");
                 }
             }
             else if(choice == 2) //add
@@ -204,14 +204,13 @@ public class SDevLMS
     //Takes in a string (a line from the file), and library
     private static void GetBookFromLine(String line, Book[] library)
     {
-        //declare variables that will hold the id, title, and author
+        //declare variables that will hold the barcode, title, author, genre, status, and dueDate
         int barcode;
         String title;
         String author;
         String genre;
         boolean status;
         LocalDate dueDate;
-
 
         //split line into 3 strings (stored in array stringBook) using commas.
         String[] stringBook = line.split(",", 6);
@@ -221,8 +220,12 @@ public class SDevLMS
         title = stringBook[1];
         author = stringBook[2];
         genre = stringBook[3];
-        status = Boolean.parseBoolean(stringBook[4]);
-        dueDate = LocalDate.parse(stringBook[5]);
+        status = Boolean.parseBoolean(stringBook[4]); //change status from string to boolean
+
+        //if string says null, dueDate is null, otherwise dueDate is the date read in
+        if(Objects.equals(stringBook[5], "null"))
+            dueDate = null;
+        else dueDate = LocalDate.parse(stringBook[5]);
 
         //add book to the library
         AddBook(barcode, title, author, genre, status, dueDate, library);
@@ -233,18 +236,25 @@ public class SDevLMS
     //Opens file and sends stores each line in a string called line.
     //This is then sent to the GetBookFromLine method
     //Takes in library, does not return anything.
-    private static void ReadFile(Book[] library) throws IOException {
+    private static void ReadFile(Book[] library) throws IOException
+    {
 
         String fileName;
-        System.out.print("Please enter the name of the text file you would like to use. (Do not include .txt in your input");
+        System.out.print("Please enter the name of the text file you would like to use. (Do not include .txt in your input): ");
+        scan.nextLine();
         fileName = scan.nextLine();
+
+        //testing
+        System.out.println("Adding books from " + fileName + ".txt\n");
 
         //open file
         BufferedReader reader = new BufferedReader(new FileReader(fileName + ".txt"));
 
+        //while there are lines to read, continue reading
         String line;
         while((line = reader.readLine()) != null)
         {
+            //each line is read in separately and made into a book
             GetBookFromLine(line, library);
         }
     }
@@ -321,7 +331,7 @@ public class SDevLMS
             do
             {
                 //initialize choice variable. Will be changed to 1 for barcode or 2 for title.
-                int choice =-1;
+                int choice = -1;
 
                 do {
                     //ask user if they want to use barcode or title to remove
@@ -342,7 +352,6 @@ public class SDevLMS
                     {
                         //ask user for title of book to remove
                         System.out.println("Please enter the title of the book you would like to remove: ");
-                        scan.next(); //remove new line char
                         String title = scan.next();
 
                         //find the location of the book in the library
@@ -375,6 +384,8 @@ public class SDevLMS
                     //remove book using its location
                     //set barcode to -1 so that it can be overwritten
                     library[location].barcode = -1;
+
+                    System.out.println("Book has been removed. ");
                 }
                 else if (yn == 2) {
                     //don't remove book
@@ -398,10 +409,13 @@ public class SDevLMS
         String title;
         int location;
 
+        //get rid of extra new line character
+        scan.nextLine();
+
         do {
             //get title from the user
             System.out.print("Please enter the title of the book you would like to check out: ");
-            title = scan.next();
+            title = scan.nextLine();
 
             //get location in library using the title
             location = FindBookUsingTitle(title, library);
@@ -412,7 +426,9 @@ public class SDevLMS
                 library[location].Checkout();
             }
             else
-                System.out.println("Error, could not find the book " + title + ". Please try again.");
+            {
+                System.out.println("Error, could not find the book titled " + title + ". Please try again.");
+            }
         } while (location == -1);
     }
 

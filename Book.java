@@ -18,7 +18,8 @@ public class Book {
 
     //prints the book with commas separating attributes (no spaces).
     void Print() {
-        System.out.print(barcode + "," + title + "," + author + "," + genre + "," + status + "," + dueDate);
+        //System.out.print(barcode + "," + title + "," + author + "," + genre + "," + status + "," + dueDate);
+        System.out.print(barcode + "," + title + "," + author + "," + genre);
     }
 
     //sets the due date to the date in 4 weeks.

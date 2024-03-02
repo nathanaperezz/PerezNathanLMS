@@ -1,4 +1,8 @@
-1,To Kill a Mockingbird,Harper Lee
-2,1984,George Orwell
-3,The Great Gatsby,F. Scott Fitzgerald
-123,The Best Book Ever,Nathan Perez
+123456,IT,Stephen King,Horror,true,null
+111111,To Kill a Mockingbird,Harper Lee,fiction,true,null
+222222,Lord of the Flies,William Golding,adventure,true,null
+333333,1984,George Orwell,dystopian,true,null
+444444,Frankenstein,Mary Shelley,gothic,true,null
+555555,The Lord of the Rings,J.R.R. Tolkien,fantasy,true,null
+666666,The Adventures of Huckleberry Finn,Mark Twain,adventure,true,null
+777777,The Martian,Andy Weir,science fiction,true,null
