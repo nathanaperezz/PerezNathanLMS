@@ -45,15 +45,16 @@ public class SDevLMS
             //create integer that stores users option choice
             int choice = 0;
 
-            //catch any non-valid data types
-            try
+            do
             {
-                choice = scan.nextInt();
-            }
-            catch(Exception e)
-            {
-                System.out.println("Error please enter only numbers");
-            }
+                //catch any non-valid data types
+                try {
+                    choice = scan.nextInt();
+                } catch (Exception e) {
+                    System.out.println("Error, please enter only numbers. Please try again.");
+                    scan.nextLine(); //clear the scanner after invalid input.
+                }
+            } while (choice == 0);
 
             //get user choice
             if(choice == -1) //quit
@@ -95,7 +96,7 @@ public class SDevLMS
             }
             else
             {
-                System.out.println(choice + " is not an valid option. Please try again.");
+                System.out.print(choice + " is not a valid option. Please try again.");
             }
 
         } //end while loop for running user options
@@ -152,7 +153,7 @@ public class SDevLMS
     private static int FindBookUsingTitle(String title, Book[] library)
     {
         for (int i = 0; i < library.length; i++) {
-            if (Objects.equals(library[i].title, title))
+            if (Objects.equals(library[i].title, title) && library[i].barcode != -1)
                 return i;
         }
         return -1; //book could not be found
@@ -283,7 +284,7 @@ public class SDevLMS
 
         while(!available) {
             //get barcode from user
-            System.out.print("ID: ");
+            System.out.print("Barcode: ");
             barcode = scan.nextInt();
             scan.nextLine(); //removes new line character so that title does not scan it.
 
@@ -352,7 +353,8 @@ public class SDevLMS
                     {
                         //ask user for title of book to remove
                         System.out.println("Please enter the title of the book you would like to remove: ");
-                        String title = scan.next();
+                        scan.nextLine();
+                        String title = scan.nextLine();
 
                         //find the location of the book in the library
                         location = FindBookUsingTitle(title, library);
