@@ -405,7 +405,7 @@ public class SDevLMS {
 
     // CHECK OUT BOOK
     //takes in library, returns nothing
-    private static void CheckOutBook(Book[] library) {
+    public static void CheckOutBook(Book[] library) {
         String title;
         int location;
 
@@ -433,7 +433,7 @@ public class SDevLMS {
 
     // CHECK IN BOOK
     //takes in library, returns nothing
-    private static void CheckInBook(Book[] library) {
+    public static void CheckInBook(Book[] library) {
         String title;
         int location;
 
