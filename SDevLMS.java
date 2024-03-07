@@ -1,7 +1,6 @@
 //Nathan Perez
-//Library Management Software for Software Development 1 Module 2
-//Create a basic LMS using SDLC created in Part I
-//Last edited 25 Jan 2024
+//Library Management Software for Software Development 1
+//Last edited 7 Jan 2024
 
 import java.io.*;
 import java.util.Objects;
@@ -10,8 +9,7 @@ import java.io.FileReader; //import file reader class
 import java.time.LocalDate; //import time class
 
 
-public class SDevLMS
-{
+public class SDevLMS {
     //testing can be set to true if tests are being run. Otherwise leave false.
     static boolean testing = true;
 
@@ -29,14 +27,12 @@ public class SDevLMS
         Book[] library = new Book[1000]; //can hold 1000 books, can be changed later if necessary
 
         //initialize array
-        for(int i = 0; i < library.length; i++)
-        {
+        for(int i = 0; i < library.length; i++) {
             library[i] = new Book();
         }
 
         //start testing
-        if(testing)
-        {
+        if(testing) {
             AddBook(2468, "Goat yoga", "Nate Perez", "nonfiction", true, null, library);
         }
         //end testing
@@ -44,8 +40,7 @@ public class SDevLMS
         System.out.println("\nWelcome to the Library Management Software!");
 
         //while loop for select and performing functions
-        while(true)
-        {
+        while(true) {
             //user options
             System.out.println("\nPlease select an option from the ones below by entering the corresponding number.");
             System.out.println("1  -  Add books from a text file");
@@ -59,8 +54,7 @@ public class SDevLMS
             //create integer that stores users option choice
             int choice = 0;
 
-            do
-            {
+            do {
                 //catch any non-valid data types
                 try {
                     choice = scan.nextInt();
@@ -73,8 +67,8 @@ public class SDevLMS
             //get user choice
             if(choice == -1) //quit
                 break;
-            else if(choice == 1) //file add
-            {
+            else if(choice == 1) {   //file add
+
                 try {
                     //file add function
                     ReadFile(library);
@@ -83,33 +77,32 @@ public class SDevLMS
                     System.out.println("Please check that books in file are seperated by commas and barcode is an non-negative integer");
                 }
             }
-            else if(choice == 2) //add
-            {
+            //add
+            else if(choice == 2) {
                 //GetUserBook method
                 GetUserBook(library);
             }
-            else if(choice == 3) //remove
-            {
+            //remove
+            else if(choice == 3) {
                 //remove book method
                 RemoveBook(library);
             }
-            else if(choice == 4) //check out
-            {
+            //check out
+            else if(choice == 4) {
                 //check out method
                 CheckOutBook(library);
             }
-            else if(choice == 5) //check in
-            {
+            //check in
+            else if(choice == 5) {
                 //check in method
                 CheckInBook(library);
             }
-            else if(choice == 6) //print
-            {
+            //print
+            else if(choice == 6) {
                 //print book method
                 PrintBooks(library);
             }
-            else
-            {
+            else {
                 System.out.print(choice + " is not a valid option. Please try again.");
             }
 
@@ -124,8 +117,7 @@ public class SDevLMS
     /*checks availability of ID in library
     takes in the ID and library
     Returns true if ID is available, and false if ID has already been used */
-    private static boolean IdAvailability(int id, Book[] library)
-    {
+    private static boolean IdAvailability(int id, Book[] library) {
         for (Book book : library) {
             if (book.getBarcode() == id)
                 return false;
@@ -138,8 +130,7 @@ public class SDevLMS
     //checks to see if there are any books in the library array
     //Takes in the library
     //If there are books, return true, else return false
-    private static boolean HasBooks(Book[] library)
-    {
+    private static boolean HasBooks(Book[] library) {
         for (Book book : library) {
             //if there are any books return true
             if (book.getBarcode() != -1)
@@ -152,8 +143,7 @@ public class SDevLMS
 
     // FIND BOOK USING BARCODE
     //finds a book in the library using the barcode, returns location of book in array, or -1 if book can't be found.
-    private static int FindBookUsingBarcode(int barcode, Book[] library)
-    {
+    private static int FindBookUsingBarcode(int barcode, Book[] library) {
         for (int i = 0; i < library.length; i++) {
             if (library[i].getBarcode() == barcode)
                 return i;
@@ -164,8 +154,7 @@ public class SDevLMS
 
     // FIND BOOK USING TITLE
     //finds a book in the library using the title, returns location of book in array, or -1 if book can't be found.
-    private static int FindBookUsingTitle(String title, Book[] library)
-    {
+    private static int FindBookUsingTitle(String title, Book[] library) {
         for (int i = 0; i < library.length; i++) {
             if (Objects.equals(library[i].getTitle(), title) && library[i].getBarcode() != -1)
                 return i;
@@ -177,11 +166,9 @@ public class SDevLMS
     // ADD BOOK
     //Adds the book to the first opening in the library
     //Takes in the ID, Title, and Author of book that is being created. Also takes in library
-    public static void AddBook(int id, String title, String author, String genre, boolean status, LocalDate dueDate, Book[] library)
-    {
+    public static void AddBook(int id, String title, String author, String genre, boolean status, LocalDate dueDate, Book[] library) {
         //if ID is available
-        if(IdAvailability(id, library))
-        {
+        if(IdAvailability(id, library)) {
             int openSpace = -2;
 
             //add 1 to numBooks
@@ -220,8 +207,7 @@ public class SDevLMS
     //Separates line by commas and stores in id, title and author with their respective data types.
     //Sends this data to the AddBook method
     //Takes in a string (a line from the file), and library
-    private static void GetBookFromLine(String line, Book[] library)
-    {
+    private static void GetBookFromLine(String line, Book[] library) {
         //declare variables that will hold the barcode, title, author, genre, status, and dueDate
         int barcode;
         String title;
@@ -254,8 +240,7 @@ public class SDevLMS
     //Opens file and sends stores each line in a string called line.
     //This is then sent to the GetBookFromLine method
     //Takes in library, does not return anything.
-    private static void ReadFile(Book[] library) throws IOException
-    {
+    private static void ReadFile(Book[] library) throws IOException {
 
         String fileName;
         System.out.print("Please enter the name of the text file you would like to use. (Do not include .txt in your input): ");
@@ -270,8 +255,7 @@ public class SDevLMS
 
         //while there are lines to read, continue reading
         String line;
-        while((line = reader.readLine()) != null)
-        {
+        while((line = reader.readLine()) != null) {
             //each line is read in separately and made into a book
             GetBookFromLine(line, library);
         }
@@ -281,8 +265,7 @@ public class SDevLMS
     // GET A BOOK FROM THE USER
     //get barcode, title, and author from user and run AddBook method
     //takes in library, returns nothing
-    private static void GetUserBook(Book[] library)
-    {
+    private static void GetUserBook(Book[] library) {
         //declare variables
         int barcode = -1;
         String title;
@@ -337,17 +320,14 @@ public class SDevLMS
     // REMOVE BOOK
     //removes a book from the library using either barcode or title
     //takes in library, returns nothing
-    private static void RemoveBook(Book[] library)
-    {
+    public static void RemoveBook(Book[] library) {
         //check to see if there are any books in library
         //if library has any books in it
-        if(HasBooks(library)) //remove a book
-        {
+        if(HasBooks(library)) {
             int barcode;
             int location = -1;
 
-            do
-            {
+            do {
                 //initialize choice variable. Will be changed to 1 for barcode or 2 for title.
                 int choice = -1;
 
@@ -358,16 +338,17 @@ public class SDevLMS
                     System.out.println("2 - Title");
                     choice = scan.nextInt();
 
-                    if (choice == 1) //user chose 1, remove by barcode
-                    {
+                    //user chose 1, remove by barcode
+                    if (choice == 1) {
                         //ask user for barcode of book to remove
                         System.out.println("Please enter the barcode number of the book you would like to remove: ");
                         barcode = scan.nextInt();
 
                         //find the location of the book in the library
                         location = FindBookUsingBarcode(barcode, library);
-                    } else if (choice == 2) //user chose 2, remove by title
-                    {
+                    }
+                    //user chose 2, remove by title
+                    else if (choice == 2) {
                         //ask user for title of book to remove
                         System.out.println("Please enter the title of the book you would like to remove: ");
                         scan.nextLine();
@@ -375,8 +356,9 @@ public class SDevLMS
 
                         //find the location of the book in the library
                         location = FindBookUsingTitle(title, library);
-                    } else //user didn't choose 1 or 2.
-                    {
+                    }
+                    //user didn't choose 1 or 2.
+                    else {
                         System.out.println(choice + " is not a valid option. Please try again.");
                     }
                 } while (choice != 1 && choice != 2); //repeat if user enters an invalid option
@@ -423,8 +405,7 @@ public class SDevLMS
 
     // CHECK OUT BOOK
     //takes in library, returns nothing
-    private static void CheckOutBook(Book[] library)
-    {
+    private static void CheckOutBook(Book[] library) {
         String title;
         int location;
 
@@ -439,13 +420,11 @@ public class SDevLMS
             //get location in library using the title
             location = FindBookUsingTitle(title, library);
 
-            if(location != -1)
-            {
+            if(location != -1) {
                 //checkout book using book's method 'Checkout()' .
                 library[location].Checkout();
             }
-            else
-            {
+            else {
                 System.out.println("Error, could not find the book titled " + title + ". Please try again.");
             }
         } while (location == -1);
@@ -454,8 +433,7 @@ public class SDevLMS
 
     // CHECK IN BOOK
     //takes in library, returns nothing
-    private static void CheckInBook(Book[] library)
-    {
+    private static void CheckInBook(Book[] library) {
         String title;
         int location;
 
@@ -467,8 +445,7 @@ public class SDevLMS
             //get location in library using the title
             location = FindBookUsingTitle(title, library);
 
-            if(location != -1)
-            {
+            if(location != -1) {
                 //check in book using book's method 'Checkin()' .
                 library[location].Checkin();
             }
@@ -481,11 +458,9 @@ public class SDevLMS
     // PRINT ALL BOOKS
     //prints all books in the library
     //takes in library, returns nothing
-    public static void PrintBooks(Book[] library)
-    {
+    private static void PrintBooks(Book[] library) {
         //check to make sure library has books in it
-        if(HasBooks(library))
-        {
+        if(HasBooks(library)) {
             System.out.println("Books: ");
             //for each book in the library
             for (Book book : library) {
@@ -498,7 +473,6 @@ public class SDevLMS
         //there are no books in library
         else System.out.println("You currently do not have any books. ");
     }
-
 
 
 } //end public class SDevLMS

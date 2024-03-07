@@ -1,14 +1,13 @@
 //Nathan Perez
-//Library Management Software for Software Development 1 Module 2
-//Last edited 24 Feb 2024
+//Library Management Software for Software Development 1
+//Last edited 7 Jan 2024
 
 //Book Class
 //stores  title, author, barcode number, genre, status, and due date
 
 import java.time.LocalDate;
 
-public class Book
-{
+public class Book {
     private static int numBooks = 0;
     private int barcode = -1;
     private String title;
@@ -99,8 +98,7 @@ public class Book
 
 
     //prints the book.
-    void Print()
-    {
+    void Print() {
         //System.out.print(barcode + "," + title + "," + author + "," + genre + "," + status + "," + dueDate);
         System.out.print(barcode + ",\t" + title + ",\t" + author + ",\t" + genre);
     }
@@ -108,8 +106,7 @@ public class Book
     //used to check out any book.
     //sets the due date to the date in 4 weeks.
     //sets the book's status as checked out (false).
-    void Checkout()
-    {
+    void Checkout() {
         status = false;
         dueDate = LocalDate.now().plusWeeks(4);
         Print();
@@ -118,8 +115,7 @@ public class Book
 
     //used to check in any books.
     //Changes the status to checked in (true) and dueDate to no due date (null).
-    void Checkin()
-    {
+    void Checkin() {
         status = true;
         dueDate = null;
         Print();
