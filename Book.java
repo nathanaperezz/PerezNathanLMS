@@ -9,13 +9,94 @@ import java.time.LocalDate;
 
 public class Book
 {
-    static int numBooks = 0;
-    int barcode = -1;
-    String title;
-    String author;
-    String genre;
-    boolean status;
-    LocalDate dueDate = null;
+    private static int numBooks = 0;
+    private int barcode = -1;
+    private String title;
+    private String author;
+    private String genre;
+    private boolean status;
+    private LocalDate dueDate = null;
+
+    //getters and setters
+    public static int getNumBooks() {
+        return numBooks;
+    }
+
+    public int getBarcode() {
+        return barcode;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public static void setNumBooks(int numBooks) {
+        Book.numBooks = numBooks;
+    }
+
+    public void setBarcode(int barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+
+    //get book as string method
+    public String getBookAsString() {
+        return (barcode + "," + title + "," + author + "," + genre + "," + status + "," + dueDate);
+    }
+
+    public void setBook(int barcode, String title, String author, String genre, boolean status, LocalDate dueDate) {
+        this.barcode = barcode;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.status = status;
+        this.dueDate = dueDate;
+    }
+
+    public static void plusBooks(){
+        numBooks++;
+    }
+
+    public static void minusBooks(){
+        numBooks--;
+    }
+
 
     //prints the book.
     void Print()

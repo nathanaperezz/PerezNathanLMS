@@ -9,14 +9,21 @@ import java.util.Scanner; //import scanner class
 import java.io.FileReader; //import file reader class
 import java.time.LocalDate; //import time class
 
+
 public class SDevLMS
 {
+    //testing can be set to true if tests are being run. Otherwise leave false.
+    static boolean testing = true;
+
+
     //scanner to be used in several methods
     static Scanner scan = new Scanner(System.in);
 
     //----------------------- MAIN -------------------------------------------------------------------
 
     public static void main(String[] args) throws IOException {
+
+
 
         //create Library (array of books)
         Book[] library = new Book[1000]; //can hold 1000 books, can be changed later if necessary
@@ -26,6 +33,13 @@ public class SDevLMS
         {
             library[i] = new Book();
         }
+
+        //start testing
+        if(testing)
+        {
+            AddBook(2468, "Goat yoga", "Nate Perez", "nonfiction", true, null, library);
+        }
+        //end testing
 
         System.out.println("\nWelcome to the Library Management Software!");
 
@@ -113,7 +127,7 @@ public class SDevLMS
     private static boolean IdAvailability(int id, Book[] library)
     {
         for (Book book : library) {
-            if (book.barcode == id)
+            if (book.getBarcode() == id)
                 return false;
         }
         return true;
@@ -128,7 +142,7 @@ public class SDevLMS
     {
         for (Book book : library) {
             //if there are any books return true
-            if (book.barcode != -1)
+            if (book.getBarcode() != -1)
                 return true;
         }
         //if it gets to this point there are no books in the array
@@ -141,7 +155,7 @@ public class SDevLMS
     private static int FindBookUsingBarcode(int barcode, Book[] library)
     {
         for (int i = 0; i < library.length; i++) {
-            if (library[i].barcode == barcode)
+            if (library[i].getBarcode() == barcode)
                 return i;
         }
         return -1; //book could not be found
@@ -153,7 +167,7 @@ public class SDevLMS
     private static int FindBookUsingTitle(String title, Book[] library)
     {
         for (int i = 0; i < library.length; i++) {
-            if (Objects.equals(library[i].title, title) && library[i].barcode != -1)
+            if (Objects.equals(library[i].getTitle(), title) && library[i].getBarcode() != -1)
                 return i;
         }
         return -1; //book could not be found
@@ -163,32 +177,35 @@ public class SDevLMS
     // ADD BOOK
     //Adds the book to the first opening in the library
     //Takes in the ID, Title, and Author of book that is being created. Also takes in library
-    private static void AddBook(int id, String title, String author, String genre, boolean status, LocalDate dueDate, Book[] library)
+    public static void AddBook(int id, String title, String author, String genre, boolean status, LocalDate dueDate, Book[] library)
     {
         //if ID is available
         if(IdAvailability(id, library))
         {
             int openSpace = -2;
 
-            Book.numBooks++;
+            //add 1 to numBooks
+            Book.plusBooks();
 
             //for loop that goes through library until it gets to an opening
             //checks for opening at the beginning first
-            for (int i = 0; i < (Book.numBooks); i++) {
-                if (library[i].barcode == -1) {
+            for (int i = 0; i < (Book.getNumBooks()); i++) {
+                if (library[i].getBarcode() == -1) {
                     openSpace = i;
                     break;
                 }
             }
 
             //add book to opening in array
-            library[openSpace].barcode = id;
-            library[openSpace].title = title;
-            library[openSpace].author = author;
-            library[openSpace].genre = genre;
-            library[openSpace].status = status;
-            library[openSpace].dueDate = dueDate;
+//            library[openSpace].setBarcode(id);
+//            library[openSpace].setTitle(title);
+//            library[openSpace].setAuthor(author);
+//            library[openSpace].setGenre(genre);
+//            library[openSpace].setStatus(status);
+//            library[openSpace].setDueDate(dueDate);
 
+            //add book using setter
+            library[openSpace].setBook(id, title, author, genre, status, dueDate);
 
             //print book for the user to let them know it has been added
             library[openSpace].Print();
@@ -385,7 +402,7 @@ public class SDevLMS
                 if (yn == 1) {
                     //remove book using its location
                     //set barcode to -1 so that it can be overwritten
-                    library[location].barcode = -1;
+                    library[location].setBarcode(-1);
 
                     System.out.println("Book has been removed. ");
                 }
@@ -400,7 +417,7 @@ public class SDevLMS
         else System.out.println("You currently do not have any books. ");
 
         //remove 1 from the book count
-        Book.numBooks--;
+        Book.minusBooks();
     }
 
 
@@ -464,7 +481,7 @@ public class SDevLMS
     // PRINT ALL BOOKS
     //prints all books in the library
     //takes in library, returns nothing
-    private static void PrintBooks(Book[] library)
+    public static void PrintBooks(Book[] library)
     {
         //check to make sure library has books in it
         if(HasBooks(library))
@@ -472,7 +489,7 @@ public class SDevLMS
             System.out.println("Books: ");
             //for each book in the library
             for (Book book : library) {
-                if (book.barcode != -1) {
+                if (book.getBarcode() != -1) {
                     book.Print();
                     System.out.print("\n");
                 }
@@ -481,5 +498,7 @@ public class SDevLMS
         //there are no books in library
         else System.out.println("You currently do not have any books. ");
     }
+
+
 
 } //end public class SDevLMS
