@@ -10,9 +10,6 @@ import java.time.LocalDate; //import time class
 
 
 public class SDevLMS {
-    //testing can be set to true if tests are being run. Otherwise leave false.
-    static boolean testing = true;
-
 
     //scanner to be used in several methods
     static Scanner scan = new Scanner(System.in);
@@ -31,11 +28,7 @@ public class SDevLMS {
             library[i] = new Book();
         }
 
-        //start testing
-        if(testing) {
-            AddBook(2468, "Goat yoga", "Nate Perez", "nonfiction", true, null, library);
-        }
-        //end testing
+
 
         System.out.println("\nWelcome to the Library Management Software!");
 
@@ -184,14 +177,6 @@ public class SDevLMS {
                     break;
                 }
             }
-
-            //add book to opening in array
-//            library[openSpace].setBarcode(id);
-//            library[openSpace].setTitle(title);
-//            library[openSpace].setAuthor(author);
-//            library[openSpace].setGenre(genre);
-//            library[openSpace].setStatus(status);
-//            library[openSpace].setDueDate(dueDate);
 
             //add book using setter
             library[openSpace].setBook(id, title, author, genre, status, dueDate);

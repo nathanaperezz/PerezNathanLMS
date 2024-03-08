@@ -39,6 +39,7 @@ class SDevLMSTest {
         assertEquals(numberOfBooks, Book.getNumBooks());
     }
 
+    //tests that the numberOfBooks goes down by 1 when 1 book is removed 
     @Test
     void RemoveBookTest() {
         Book[] libraryTest = new Book[10];
