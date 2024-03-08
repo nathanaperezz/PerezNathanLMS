@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 //a book can be checked in. If so, the due date is "null".
 
 
-
 class SDevLMSTest {
 
 
@@ -56,14 +55,14 @@ class SDevLMSTest {
         //gets number of books before book is added
         int numberOfBooks = Book.getNumBooks();
 
-        //adds book
-        //SDevLMS.RemoveBook(libraryTest);
+        //removes book
+        SDevLMS.RemoveBook(libraryTest[0]);
 
         //adds 1 to number of books
         numberOfBooks--;
 
         //checks that the expected number of books = the actual number of books
-        //assertEquals(numberOfBooks, Book.getNumBooks());
+        assertEquals(numberOfBooks, Book.getNumBooks());
     }
 
     //checks that when a book is checked out its dueDate is no longer null.

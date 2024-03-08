@@ -85,7 +85,7 @@ public class SDevLMS {
             //remove
             else if(choice == 3) {
                 //remove book method
-                RemoveBook(library);
+                SelectBookToRemove(library);
             }
             //check out
             else if(choice == 4) {
@@ -156,7 +156,9 @@ public class SDevLMS {
     //finds a book in the library using the title, returns location of book in array, or -1 if book can't be found.
     private static int FindBookUsingTitle(String title, Book[] library) {
         for (int i = 0; i < library.length; i++) {
+            //ensures that title matches and the books barcode does not equal -1
             if (Objects.equals(library[i].getTitle(), title) && library[i].getBarcode() != -1)
+                //returns the location of the book in the array
                 return i;
         }
         return -1; //book could not be found
@@ -320,7 +322,7 @@ public class SDevLMS {
     // REMOVE BOOK
     //removes a book from the library using either barcode or title
     //takes in library, returns nothing
-    public static void RemoveBook(Book[] library) {
+    public static void SelectBookToRemove(Book[] library) {
         //check to see if there are any books in library
         //if library has any books in it
         if(HasBooks(library)) {
@@ -383,8 +385,7 @@ public class SDevLMS {
 
                 if (yn == 1) {
                     //remove book using its location
-                    //set barcode to -1 so that it can be overwritten
-                    library[location].setBarcode(-1);
+                    RemoveBook(library[location]);
 
                     System.out.println("Book has been removed. ");
                 }
@@ -397,6 +398,14 @@ public class SDevLMS {
         }
         //there are no books in library
         else System.out.println("You currently do not have any books. ");
+
+    }
+
+    // REMOVE BOOK
+    //takes in a book and removes it from the library by setting its barcode to -1
+    public static void RemoveBook(Book book) {
+        //set barcode = -1
+        book.setBarcode(-1);
 
         //remove 1 from the book count
         Book.minusBooks();
