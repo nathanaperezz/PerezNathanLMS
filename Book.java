@@ -79,6 +79,20 @@ public class Book {
         return (barcode + "," + title + "," + author + "," + genre + "," + status + "," + dueDate);
     }
 
+    public Object [] getBookAsArray() {
+        Object[] bookAsArray = new Object[6];
+
+        //fill array with book components
+        bookAsArray[0] = barcode;
+        bookAsArray[1] = title;
+        bookAsArray[2] = author;
+        bookAsArray[3] = genre;
+        bookAsArray[4] = status;
+        bookAsArray[5] = dueDate;
+
+        return bookAsArray;
+    }
+
     public void setBook(int barcode, String title, String author, String genre, boolean status, LocalDate dueDate) {
         this.barcode = barcode;
         this.title = title;

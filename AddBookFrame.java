@@ -13,7 +13,7 @@ public class AddBookFrame extends JFrame{
     private JButton btnBack;
 
 
-    public AddBookFrame() {
+    public AddBookFrame(Book[] library) {
         setContentPane(addBookPanel);
         setTitle("Library Management System");
         setSize(450, 300);

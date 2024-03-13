@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame{
-    private JButton btnAddBook;
+
     private JButton btnImportLibrary;
     private JButton btnRemoveBarcode;
     private JButton btnCheckOut;
@@ -13,9 +13,9 @@ public class MainFrame extends JFrame{
     private JButton btnRemoveTitle;
     //private JPanel addBookPanel;
 
-    public MainFrame() {
+    public MainFrame(Book[] library) {
         setContentPane(mainPanel);
-        setTitle("Library Management System - Home");
+        setTitle("Library Management System");
         setSize(450, 300);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -25,51 +25,43 @@ public class MainFrame extends JFrame{
 
             }
         });
-        btnAddBook.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AddBookFrame myAddBookForm = new AddBookFrame();
-            }
-        });
+
         btnCheckOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CheckOutBookFrame myCheckOut = new CheckOutBookFrame();
+                CheckOutBookFrame myCheckOut = new CheckOutBookFrame(library);
             }
         });
         btnCheckIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CheckInBookFrame myCheckIn = new CheckInBookFrame();
+                CheckInBookFrame myCheckIn = new CheckInBookFrame(library);
             }
         });
         btnViewBooks.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewBooksFrame myView = new ViewBooksFrame();
+                ViewBooksFrame myView = new ViewBooksFrame(library);
             }
         });
         btnRemoveTitle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RemoveBookTitleFrame myRemoveTitle = new RemoveBookTitleFrame();
+                RemoveBookTitleFrame myRemoveTitle = new RemoveBookTitleFrame(library);
             }
         });
         btnRemoveBarcode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RemoveBookBarcodeFrame myRemoveBarcode = new RemoveBookBarcodeFrame();
+                RemoveBookBarcodeFrame myRemoveBarcode = new RemoveBookBarcodeFrame(library);
             }
         });
         btnImportLibrary.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ImportLibraryFrame myImportLibrary = new ImportLibraryFrame();
+                ImportLibraryFrame myImportLibrary = new ImportLibraryFrame(library);
             }
         });
     }
 
-    public static void main(String[] args){
-        MainFrame myMainFrame = new MainFrame();
-    }
 }

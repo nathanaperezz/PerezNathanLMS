@@ -1,3 +1,7 @@
+//Nathan Perez
+//Library Management Software for Software Development 1
+//Last edited 13 March 2024
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -5,9 +9,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Scanner;
 
-//Nathan Perez
-//Library Management Software for Software Development 1
-//Last edited 7 Jan 2024
 
 public class LMS {
 
@@ -27,8 +28,8 @@ public class LMS {
         }
 
         //run gui
-        MainFrame myMainFrame = new MainFrame();
-        
+        MainFrame myMainFrame = new MainFrame(library);
+
     } //end main
 
 
@@ -157,7 +158,7 @@ public class LMS {
     //Opens file and sends stores each line in a string called line.
     //This is then sent to the GetBookFromLine method
     //Takes in library, does not return anything.
-    private static void ReadFile(String fileName, Book[] library) throws IOException {
+    public static void ReadFile(String fileName, Book[] library) throws IOException {
         //read file
         BufferedReader reader = new BufferedReader(new FileReader(fileName + ".txt"));
 
@@ -174,7 +175,7 @@ public class LMS {
 
     // REMOVE BOOK
     //takes in a book and removes it from the library by setting its barcode to -1
-    public static void RemoveBook(Book book) {
+    private static void RemoveBook(Book book) {
         //set barcode = -1
         book.setBarcode(-1);
 
@@ -238,6 +239,21 @@ public class LMS {
         }
         //there are no books in library
 //        else System.out.println("You currently do not have any books. ");
+    }
+
+    public static Object [][] get2dArrayOfLibrary(Book[] library) {
+        Object [][] array2d;
+        //array2d = new Object[6][Book.getNumBooks()];
+        array2d = new Object[Book.getNumBooks()][6];
+
+        int j = 0;
+        for(int i = 0; i < library.length; i++) {
+            if(library[i].getBarcode() != -1) {
+                array2d[j] = library[i].getBookAsArray();
+                j++;
+            }
+        }
+        return array2d;
     }
 
 } //end class LMS
