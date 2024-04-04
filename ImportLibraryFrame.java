@@ -10,7 +10,7 @@ public class ImportLibraryFrame extends JFrame{
 
     public ImportLibraryFrame(Book[] library) {
         setContentPane(importLibraryPanel);
-        setTitle("Remove Book Using Title");
+        setTitle("Import Library");
         setSize(450, 300);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);

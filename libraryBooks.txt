@@ -6,3 +6,83 @@
 555555,The Lord of the Rings,J.R.R. Tolkien,fantasy,true,null
 666666,The Adventures of Huckleberry Finn,Mark Twain,adventure,true,null
 777777,The Martian,Andy Weir,science fiction,true,null
+123457,The Catcher in the Rye,J.D. Salinger,coming-of-age,true,null
+123458,Pride and Prejudice,Jane Austen,romance,true,null
+123459,The Great Gatsby,F. Scott Fitzgerald,literary,true,null
+123460,Brave New World,Aldous Huxley,dystopian,true,null
+123461,The Hobbit,J.R.R. Tolkien,fantasy,true,null
+123462,Animal Farm,George Orwell,dystopian,true,null
+123463,Dracula,Bram Stoker,gothic,true,null
+123464,The Catcher in the Rye,J.D. Salinger,coming-of-age,true,null
+123465,The Picture of Dorian Gray,Oscar Wilde,gothic,true,null
+123466,One Hundred Years of Solitude,Gabriel García Márquez,magical realism,true,null
+123467,The Odyssey,Homer,classic,true,null
+123468,Fahrenheit 451,Ray Bradbury,dystopian,true,null
+123469,The Count of Monte Cristo,Alexandre Dumas,adventure,true,null
+123470,The Secret Garden,Frances Hodgson Burnett,children's,true,null
+123471,The Alchemist,Paulo Coelho,adventure,true,null
+123472,Moby-Dick,Herman Melville,adventure,true,null
+123473,War and Peace,Leo Tolstoy,historical,true,null
+123474,Alice's Adventures in Wonderland,Lewis Carroll,fantasy,true,null
+123475,The Iliad,Homer,classic,true,null
+123476,The Divine Comedy,Dante Alighieri,classic,true,null
+123477,Les Misérables,Victor Hugo,historical,true,null
+123478,The Stranger,Albert Camus,existential,true,null
+123479,Don Quixote,Miguel de Cervantes,classic,true,null
+123480,A Tale of Two Cities,Charles Dickens,historical,true,null
+123481,The Brothers Karamazov,Fyodor Dostoevsky,literary,true,null
+123482,The Three Musketeers,Alexandre Dumas,adventure,true,null
+123483,The Grapes of Wrath,John Steinbeck,literary,true,null
+123484,The Canterbury Tales,Geoffrey Chaucer,classic,true,null
+123485,The Road,Cormac McCarthy,dystopian,true,null
+123486,A Wrinkle in Time,Madeleine L'Engle,science fiction,true,null
+123487,The Chronicles of Narnia,C.S. Lewis,fantasy,true,null
+123488,A Song of Ice and Fire,George R.R. Martin,fantasy,true,null
+123489,The Handmaid's Tale,Margaret Atwood,dystopian,true,null
+123490,Great Expectations,Charles Dickens,literary,true,null
+123491,The Scarlet Letter,Nathaniel Hawthorne,literary,true,null
+123492,Charlotte's Web,E.B. White,children's,true,null
+123493,The Old Man and the Sea,Ernest Hemingway,literary,true,null
+123494,The Bell Jar,Sylvia Plath,literary,true,null
+123495,Beloved,Toni Morrison,literary,true,null
+123496,The Sun Also Rises,Ernest Hemingway,literary,true,null
+123497,Infinite Jest,David Foster Wallace,literary,true,null
+123498,The Giver,Lois Lowry,dystopian,true,null
+123499,A Clockwork Orange,Anthony Burgess,dystopian,true,null
+123500,The Silmarillion,J.R.R. Tolkien,fantasy,true,null
+123501,The Adventures of Sherlock Holmes,Arthur Conan Doyle,mystery,true,null
+123502,Anna Karenina,Leo Tolstoy,literary,true,null
+123503,The Stand,Stephen King,post-apocalyptic,true,null
+123504,Slaughterhouse-Five,Kurt Vonnegut,science fiction,true,null
+123505,The Shining,Stephen King,horror,true,null
+123506,The Color Purple,Alice Walker,literary,true,null
+123507,Wuthering Heights,Emily Brontë,gothic,true,null
+123508,The Outsiders,S.E. Hinton,coming-of-age,true,null
+123509,The Kite Runner,Khaled Hosseini,literary,true,null
+123510,The Bell Jar,Sylvia Plath,literary,true,null
+123511,The Road,Cormac McCarthy,dystopian,true,null
+123512,Dune,Frank Herbert,science fiction,true,null
+123513,The Secret History,Donna Tartt,literary,true,null
+123514,The Goldfinch,Donna Tartt,literary,true,null
+123515,The Stand,Stephen King,post-apocalyptic,true,null
+123516,To the Lighthouse,Virginia Woolf,literary,true,null
+123517,Mrs. Dalloway,Virginia Woolf,literary,true,null
+123518,The Trial,Franz Kafka,literary,true,null
+123519,A Farewell to Arms,Ernest Hemingway,literary,true,null
+123520,The Wind-Up Bird Chronicle,Haruki Murakami,literary,true,null
+123521,Absalom, Absalom!,William Faulkner,literary,true,null
+123522,The Metamorphosis,Franz Kafka,literary,true,null
+123523,Blood Meridian,Cormac McCarthy,literary,true,null
+123524,The Sound and the Fury,William Faulkner,literary,true,null
+123525,White Noise,Don DeLillo,literary,true,null
+123526,Blood Meridian,Cormac McCarthy,literary,true,null
+123527,2666,Roberto Bolaño,literary,true,null
+123528,The Road,Cormac McCarthy,dystopian,true,null
+123529,The Heart Is a Lonely Hunter,Carson McCullers,literary,true,null
+123530,The Master and Margarita,Mikhail Bulgakov,literary,true,null
+123531,The Left Hand of Darkness,Ursula K. Le Guin,science fiction,true,null
+123532,The Magic Mountain,Thomas Mann,literary,true,null
+123533,The Amazing Adventures of Kavalier & Clay,Michael Chabon,literary,true,null
+123534,The Book Thief,Markus Zusak,literary,true,null
+123535,Naked Lunch,William S. Burroughs,literary,true,null
+123536,The Plague,Albert Camus,literary,true,null

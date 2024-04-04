@@ -17,6 +17,7 @@ public class MainFrame extends JFrame{
         setContentPane(mainPanel);
         setTitle("Library Management System");
         setSize(450, 300);
+        //setSize(550, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         btnImportLibrary.addActionListener(new ActionListener() {
