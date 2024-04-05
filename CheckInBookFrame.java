@@ -1,3 +1,5 @@
+import DBHelper.books;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +9,7 @@ public class CheckInBookFrame extends JFrame {
     private JButton btnEnter;
     private JPanel checkInPanel;
 
-    public CheckInBookFrame(Book[] library) {
+    public CheckInBookFrame(books db) {
         setContentPane(checkInPanel);
         setTitle("Check-in Book");
         setSize(450, 300);
@@ -18,8 +20,8 @@ public class CheckInBookFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //get title from text field
                 String title = tfTitle.getText();
-                //check in book using checkinbook method in LMS
-                LMS.CheckInBook(title, library);
+                //check in book using checkin method in DatabaseLMS
+                DatabaseLMS.Checkin(title, db);
                 setVisible(false);
             }
         });

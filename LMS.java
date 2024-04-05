@@ -28,7 +28,7 @@ public class LMS {
         }
 
         //run gui
-        MainFrame myMainFrame = new MainFrame(library);
+        //MainFrame myMainFrame = new MainFrame(library);
 
     } //end main
 

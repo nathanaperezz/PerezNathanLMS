@@ -1,10 +1,9 @@
 package DBHelper;
 
 import javax.swing.table.DefaultTableModel;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-public class LibraryDatabase {
+public class NotesLibraryDatabase {
     public static void main (String [] args) {
 
         //create instance of database class, books

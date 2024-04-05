@@ -1,3 +1,6 @@
+
+import DBHelper.books;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +10,7 @@ public class RemoveBookBarcodeFrame extends JFrame{
     private JPanel removeBarcodePanel;
     private JButton btnEnter;
 
-    public RemoveBookBarcodeFrame(Book[] library) {
+    public RemoveBookBarcodeFrame(books db) {
         setContentPane(removeBarcodePanel);
         setTitle("Remove Book Using Barcode");
         setSize(450, 300);
@@ -20,7 +23,8 @@ public class RemoveBookBarcodeFrame extends JFrame{
                 //get barcode as string from text field and change it to an int
                 int barcode = Integer.parseInt(tfBarcode.getText());
                 //remove book using barcode
-                LMS.RemoveBookBarcode(barcode, library);
+                DatabaseLMS.DeleteUsingBarcode(barcode, db);
+                //LMS.RemoveBookBarcode(barcode, library);
                 setVisible(false);
             }
         });

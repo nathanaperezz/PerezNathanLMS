@@ -1,3 +1,6 @@
+
+import DBHelper.books;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +10,7 @@ public class RemoveBookTitleFrame extends JFrame{
     private JTextField tfTitle;
     private JButton btnEnter;
 
-    public RemoveBookTitleFrame(Book[] library) {
+    public RemoveBookTitleFrame(books db) {
         setContentPane(removeBookTitlePanel);
         setTitle("Remove Book Using Title");
         setSize(450, 300);
@@ -20,7 +23,8 @@ public class RemoveBookTitleFrame extends JFrame{
                 //get title from text field
                 String title = tfTitle.getText();
                 //remove book using title
-                LMS.RemoveBookTitle(title, library);
+                DatabaseLMS.DeleteUsingTitle(title, db);
+                //LMS.RemoveBookTitle(title, library);
                 setVisible(false);
             }
         });

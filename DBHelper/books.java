@@ -100,7 +100,7 @@ public class books extends DBHelper {
 	}
 
 	/*
-	getExecute Result
+	getExecuteResult
 	Purpose: performs a search of the database, where String "query" is the SQL
 	command that would be entered on the command line
 	Return type: ArrayList<ArrayList<Object>> - this means it returns a 2d
