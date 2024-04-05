@@ -2,11 +2,14 @@ import DBHelper.books;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ViewBooksFrame extends JFrame {
 
     private JPanel viewPanel;
+    private JButton refreshButton;
     private JTable tableLibrary;
 
 
@@ -20,7 +23,7 @@ public class ViewBooksFrame extends JFrame {
         ArrayList<ArrayList<Object>> table = DatabaseLMS.get2dArrayOfLibrary(db);
 
         //names for the columns
-        String[] colNames = new String[] {"Barcode", "Title", "Author", "Genre", "Status", "Due date"};
+        String[] colNames = new String[]{"Barcode", "Title", "Author", "Genre", "Status", "Due date"};
 
         //convert table to array, so it will fit my printing format
         Object[][] array = new Object[table.size()][];
@@ -42,6 +45,8 @@ public class ViewBooksFrame extends JFrame {
 
         setContentPane(viewPanel);
         setVisible(true);
+
+
     }
 
 

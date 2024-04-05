@@ -37,6 +37,7 @@ public class DatabaseLMS {
     //Check out a book.  The book's status will change to "checked out" and the due date will be updated.
     public static void Checkout(String title, books db) {
         db.update("status", String.valueOf(false), "title", title);
+        db.execute("UPDATE books SET due_date = DATE('now', '+14 day') WHERE title = '" + title + "';");
     }
 
     //Check in a book.  The book's status will change to "checked in" and the due date will be updated to "null".
