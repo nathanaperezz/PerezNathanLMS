@@ -25,11 +25,18 @@ public class ViewBooksFrame extends JFrame {
         //names for the columns
         String[] colNames = new String[]{"Barcode", "Title", "Author", "Genre", "Status", "Due date"};
 
-        //convert table to array, so it will fit my printing format
+        //convert table to array, so it will fit my printing format and make status more readable
         Object[][] array = new Object[table.size()][];
         for (int i = 0; i < table.size(); i++) {
             ArrayList<Object> innerList = table.get(i);
             array[i] = innerList.toArray(new Object[0]);
+
+            //print status as either available/checked out (rather than true/false).
+            if(array[i][4].equals(1) || array[i][4].equals("true"))
+                array[i][4] = "Available";
+            else
+                array[i][4] = "Checked out";
+
         }
 
         //create table
@@ -45,10 +52,7 @@ public class ViewBooksFrame extends JFrame {
 
         setContentPane(viewPanel);
         setVisible(true);
-
-
     }
-
 
 }
 
