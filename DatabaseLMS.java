@@ -29,7 +29,7 @@ public class DatabaseLMS {
 
     //--------------------- FUNCTIONS -----------------------------------------------------
 
-    //Create 2d array of db (used for viewing books)
+    //Create and return 2d array of db (used for viewing books)
     public static ArrayList<ArrayList<Object>> get2dArrayOfLibrary (books db) {
         ArrayList<ArrayList<Object>> array2d;
         array2d = db.getExecuteResult("SELECT * FROM books;");
