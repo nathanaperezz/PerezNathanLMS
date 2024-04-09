@@ -1,7 +1,7 @@
-//Nathan Perez
-//Software Development 1
-
 /*
+ * Nathan Perez
+ * Software Development 1
+ *
  * Library Management System
  * Uses a GUI to perform the following:
  *      Print the contents of the database to the GUI screen.
@@ -12,50 +12,63 @@
  */
 
 import DBHelper.books;
-
 import java.util.ArrayList;
 
 public class DatabaseLMS {
 
     public static void main(String[] args) {
-
-        //create instance of database class, books
         books db = new books();
-
-        //run gui
         MainFrame myMainFrame = new MainFrame(db);
+    }
 
-    } //end main
-
-    //--------------------- FUNCTIONS -----------------------------------------------------
-
-    //Create and return 2d array of db (used for viewing books)
+    
+    /**
+     * Get a 2d Array of database
+     * @param db Database to use
+     * @return 2d array of entire database
+     */
     public static ArrayList<ArrayList<Object>> get2dArrayOfLibrary (books db) {
         ArrayList<ArrayList<Object>> array2d;
         array2d = db.getExecuteResult("SELECT * FROM books;");
         return array2d;
     }
 
-    //Remove a book from the database (SQLite file) by title and barcode.
-    //      using title
+    /**
+     * Deletes book from database
+     * @param title Title of book to remove
+     * @param db Database to remove from
+     */
     public static void DeleteUsingTitle(String title, books db) {
         db.delete("title", title);
     }
-    //      using barcode
+
+    /**
+     * Deletes book from database
+     * @param barcode Barcode of book to remove
+     * @param db Database to remove from
+     */
     public static void DeleteUsingBarcode(int barcode, books db) {
         db.delete("barcode", String.valueOf(barcode));
     }
 
-    //Check out a book.  The book's status will change to "checked out" and the due date will be updated.
+    /**
+     * Changes status to checked out and adds dueDate in 14 days
+     * @param title Title of book to check out
+     * @param db Database to check out from
+     */
     public static void Checkout(String title, books db) {
         db.update("status", String.valueOf(false), "title", title);
         db.execute("UPDATE books SET due_date = DATE('now', '+14 day') WHERE title = '" + title + "';");
     }
 
-    //Check in a book.  The book's status will change to "checked in" and the due date will be updated to "null".
+    /**
+     * Changes status to checked in and changes dueDate to null.
+     * @param title Title of book to check in
+     * @param db Database to check in to
+     */
     public static void Checkin(String title, books db) {
         db.update("status", String.valueOf(true), "title", title);
         db.execute("UPDATE books SET due_date = NULL WHERE title = '" + title + "';");
     }
 
-} // end class
+}
