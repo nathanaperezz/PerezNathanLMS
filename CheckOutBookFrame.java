@@ -10,6 +10,10 @@ public class CheckOutBookFrame extends JFrame{
     private JButton btnEnter;
     private JPanel checkOutPanel;
 
+    /**
+     * Opens check out panel
+     * @param db Database to check out from
+     */
     public CheckOutBookFrame(books db) {
         setContentPane(checkOutPanel);
         setTitle("Check-out Book");
@@ -19,11 +23,11 @@ public class CheckOutBookFrame extends JFrame{
         btnEnter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //get title from text field
+
                 String title = tfTitle.getText();
-                //check out book using checkout method in DatabaseLMS
+
                 DatabaseLMS.Checkout(title, db);
-                //LibraryDatabase.CheckOutBook(title, db);
+
                 setVisible(false);
             }
         });

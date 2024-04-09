@@ -13,17 +13,18 @@ public class ViewBooksFrame extends JFrame {
     private JTable tableLibrary;
 
 
-
+    /**
+     * Opens view library panel
+     * @param db Database to view
+     */
     public ViewBooksFrame(books db) {
         setTitle("View Library");
         setSize(450, 300);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        //get table of books from database using DatabaseLMS method get2dArrayOfLibrary()
         ArrayList<ArrayList<Object>> table = DatabaseLMS.get2dArrayOfLibrary(db);
 
-        //names for the columns
-        String[] colNames = new String[]{"Barcode", "Title", "Author", "Genre", "Status", "Due date"};
+        String[] columnNames = new String[]{"Barcode", "Title", "Author", "Genre", "Status", "Due date"};
 
         //convert table to array, so it will fit my printing format and make status more readable
         Object[][] array = new Object[table.size()][];
@@ -31,7 +32,7 @@ public class ViewBooksFrame extends JFrame {
             ArrayList<Object> innerList = table.get(i);
             array[i] = innerList.toArray(new Object[0]);
 
-            //print status as either available/checked out (rather than true/false).
+            //display status as available/checked
             if(array[i][4].equals(1) || array[i][4].equals("true"))
                 array[i][4] = "Available";
             else
@@ -39,15 +40,9 @@ public class ViewBooksFrame extends JFrame {
 
         }
 
-        //create table
-        tableLibrary = new JTable(array, colNames);
-
-        // Create a scroll pane for the table
+        tableLibrary = new JTable(array, columnNames);
         JScrollPane scrollPane = new JScrollPane(tableLibrary);
-
-        viewPanel.setLayout(new BorderLayout()); // Set BorderLayout
-
-        // Add the scroll pane containing the table to the viewPanel
+        viewPanel.setLayout(new BorderLayout());
         viewPanel.add(scrollPane, BorderLayout.CENTER);
 
         setContentPane(viewPanel);

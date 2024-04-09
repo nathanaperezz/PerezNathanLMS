@@ -9,6 +9,10 @@ public class CheckInBookFrame extends JFrame {
     private JButton btnEnter;
     private JPanel checkInPanel;
 
+    /**
+     * Opens check in book panel
+     * @param db Database to check book in to
+     */
     public CheckInBookFrame(books db) {
         setContentPane(checkInPanel);
         setTitle("Check-in Book");
@@ -18,10 +22,11 @@ public class CheckInBookFrame extends JFrame {
         btnEnter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //get title from text field
+
                 String title = tfTitle.getText();
-                //check in book using checkin method in DatabaseLMS
+
                 DatabaseLMS.Checkin(title, db);
+
                 setVisible(false);
             }
         });

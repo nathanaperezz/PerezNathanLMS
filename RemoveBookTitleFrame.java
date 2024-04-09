@@ -10,6 +10,10 @@ public class RemoveBookTitleFrame extends JFrame{
     private JTextField tfTitle;
     private JButton btnEnter;
 
+    /**
+     * Opens remove book panel
+     * @param db Database to remove book from
+     */
     public RemoveBookTitleFrame(books db) {
         setContentPane(removeBookTitlePanel);
         setTitle("Remove Book Using Title");
@@ -20,11 +24,9 @@ public class RemoveBookTitleFrame extends JFrame{
         btnEnter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //get title from text field
                 String title = tfTitle.getText();
-                //remove book using title
                 DatabaseLMS.DeleteUsingTitle(title, db);
-                //LMS.RemoveBookTitle(title, library);
+
                 setVisible(false);
             }
         });

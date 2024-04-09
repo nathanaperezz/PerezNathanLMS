@@ -13,21 +13,14 @@ public class MainFrame extends JFrame{
     private JButton btnViewBooks;
     private JPanel mainPanel;
     private JButton btnRemoveTitle;
-    //private JPanel addBookPanel;
 
     public MainFrame(books db) {
         setContentPane(mainPanel);
         setTitle("Library Management System");
         setSize(450, 300);
-        //setSize(550, 400);
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-//        btnImportLibrary.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
 
         btnCheckOut.addActionListener(new ActionListener() {
             @Override
@@ -59,12 +52,6 @@ public class MainFrame extends JFrame{
                 RemoveBookBarcodeFrame myRemoveBarcode = new RemoveBookBarcodeFrame(db);
             }
         });
-//        btnImportLibrary.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                ImportLibraryFrame myImportLibrary = new ImportLibraryFrame(db);
-//            }
-//        });
     }
 
 }
